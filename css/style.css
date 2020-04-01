@@ -4,9 +4,62 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-}
+        opacity: 0.9;
+    }
 .b-name{
-    font-size: 100px;
+    /* font-size: 100px; */
     text-align: center;
-    vertical-align: middle;
+    font-weight: 800;
+    color: white;
+    font-style: italic;
+    font-family: 'Marck Script', cursive;
 }
+body{
+    font-family: sans-serif;
+}
+.travel-card-item{
+    background-size: cover;
+    display: block;
+    background-position: center;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.travel-card-item #card-detail{
+    display: none;
+    position: absolute;
+}
+.travel-card-item:hover #card-detail{
+    display: block;
+    background-color: yellow;
+}
+.about-image{
+    background-size: cover;
+    display: block;
+    background-position: center;
+}
+.about{
+    font-size: 30px;
+    font-weight: 500;
+}
+.about-head{
+    font-weight: 900;
+    color: gray;
+}
+.card-head{
+    font-weight: 700;
+}
+.card-hover{
+    font-weight: 800;
+}
+@media only screen and (max-width: 600px) {
+    body {
+      font-size: 20px;
+    }
+    .icon-item{
+        size: 30px;
+    }
+    .about-image{
+        display: none;
+    }
+  }
