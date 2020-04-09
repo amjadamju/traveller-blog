@@ -25,21 +25,13 @@ body{
     max-height: 100%;
 }
 
-.travel-card-item #card-detail{
-    display: none;
-    position: absolute;
-}
-.travel-card-item:hover #card-detail{
-    display: block;
-    background-color: yellow;
-}
 .about-image{
     background-size: cover;
     display: block;
     background-position: center;
 }
 .about{
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 500;
 }
 .about-head{
@@ -52,6 +44,16 @@ body{
 .card-hover{
     font-weight: 800;
 }
+.hr-line{
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+
+
+
+
+
 @media only screen and (max-width: 600px) {
     body {
       font-size: 20px;
@@ -62,4 +64,38 @@ body{
     .about-image{
         display: none;
     }
+    .hr-line{
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /*POST PAGE*/
+  .post-nav{
+      background-color: #f9a825;
+      font-weight: 400;
+    }
+.post-head-image{
+    background-image: url('../img/IMG_20181106_171542_HDR.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+.post-heading{
+    font-weight: 500;
+}
