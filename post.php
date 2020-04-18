@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Admin</title>
+    <title>Post</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
     <!-- Google Fonts Roboto -->
@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="css/mdb.min.css">
     <!-- Your custom styles (optional) -->
     <link rel="stylesheet" href="css/style.css">
+    <?php
+    include_once 'connection.php';
+    ?>
 </head>
 
 <body style="overflow-x: hidden;">
@@ -66,7 +69,7 @@
                 search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have
                 evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
 
-                <h3 class="py-3">Where does it come from?</h3>
+                <h3 class="py-3">Where does it come from</h3>
 
                 Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical
                 Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at
@@ -91,29 +94,66 @@
                 <div class="row mb-3">
                     <p>our mail will not be published.Required fields are marked:)</p>
                 </div>
-                <form id="review">
+                <?php
+                 $dbhost = "localhost";
+                 $dbuser = "root";
+                 $dbpass = "";
+                 $db = "travelblog";
+                 $dbTable="comment_table";
+                 $id=2;
+                 $conn = new mysqli($dbhost, $dbuser, $dbpass, $db) or die("Connect failed: %s\n" . $conn->error);
+                //  echo $_POST['name'];
+                if (isset($_POST['send'])) {
+                    $sql = "INSERT INTO comment_table (name, email,comment) VALUES ('".$_POST["name"]."','".$_POST["email"]."','".$_POST["comment"]."')";
+                    $result = mysqli_query($conn,$sql);
+                }
+                $sql = "SELECT comment,name from $dbTable WHERE comment_id = $id";
+                $result = $conn->query($sql);
+                
+                ?>
+                <form id="review" action="post.php" method="post">
                     <div class="form-group">
-                        <textarea class="form-control rounded-0" id="exampleFormControlTextarea2" rows="6"
-                            placeholder="Type here"></textarea>
+                        <textarea name="comment" class="form-control rounded-0" id="exampleFormControlTextarea2" rows="6" placeholder="Type here"></textarea>
                     </div>
                     <div class="row">
                         <!-- Grid column -->
                         <div class="col">
                             <!-- Default input -->
-                            <input type="text" class="form-control" placeholder="First name">
+                            <input type="text" name="name" class="form-control" placeholder="First name">
                         </div>
                         <!-- Grid column -->
 
                         <!-- Grid column -->
                         <div class="col">
                             <!-- Default input -->
-                            <input type="text" class="form-control" placeholder="E-mail">
+                            <input type="text" name="email" class="form-control" placeholder="E-mail">
                         </div>
                         <!-- Grid column -->
                     </div>
 
-                    <button type="button" class="my-3 btn btn-amber">Amber</button>
+                    <button type="submit" name="send"  class="my-3 btn btn-amber">Submit</button>
+                    <h1><?php if($row = $result->fetch_assoc()) {
+                    echo "<h1>".$row["comment"]."<br>".$row["name"]."</h1>";
+                } ?></h1>
                 </form>
+            </div>
+        </div>
+    </section>
+    <section id="gallery">
+        <div class="container">
+            <div class="row">
+                <div class="col-3 gallery-item">
+                    <img src="img/about.jpg">
+                </div>
+                <div class="col-3 gallery-item">
+                    <img src="img/about.jpg">
+                </div>
+                <div class="col-3 gallery-item">
+                    <img src="img/about.jpg">
+                </div>
+                <div class="col-3 gallery-item">
+                    <img src="img/about.jpg">
+                </div>
             </div>
         </div>
     </section>
@@ -170,6 +210,44 @@
 
 
     <!-- End your project here-->
+    <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <!-- <script type="text/javascript">
+        function validateContactForm() {
+            var valid = true;
+
+            var name = $("#userName").val();
+            var email = $("#userEmail").val();
+            var comment = $("#subject").val();
+
+            if (userName == "") {
+                $("#userName-info").html("Required.");
+                $("#userName").css('border', '#e66262 1px solid');
+                valid = false;
+            }
+            if (userEmail == "") {
+                $("#userEmail-info").html("Required.");
+                $("#userEmail").css('border', '#e66262 1px solid');
+                valid = false;
+            }
+            if (!userEmail.match(/^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/)) {
+                $("#userEmail-info").html("Invalid Email Address.");
+                $("#userEmail").css('border', '#e66262 1px solid');
+                valid = false;
+            }
+
+            if (subject == "") {
+                $("#subject-info").html("Required.");
+                $("#subject").css('border', '#e66262 1px solid');
+                valid = false;
+            }
+            if (content == "") {
+                $("#userMessage-info").html("Required.");
+                $("#content").css('border', '#e66262 1px solid');
+                valid = false;
+            }
+            return valid;
+        }
+    </script> -->
     <!-- jQuery -->
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <!-- Bootstrap tooltips -->

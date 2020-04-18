@@ -99,3 +99,10 @@ body{
 .post-heading{
     font-weight: 500;
 }
+.gallery-item{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: auto;
+    min-width: 100%;
+}

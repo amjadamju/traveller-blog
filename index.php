@@ -7,7 +7,7 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title>Fahi_dTraveller</title>
   <!-- MDB icon -->
-  <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
+  <!-- <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon"> -->
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
   <!-- Google Fonts Roboto -->
@@ -18,12 +18,24 @@
   <link rel="stylesheet" href="css/mdb.min.css">
   <!-- Your custom styles (optional) -->
   <link rel="stylesheet" href="css/style.css">
-
   <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
+  <?php
+  include_once 'connection.php';
+  ?>
 </head>
 
 <body style="overflow-x: hidden;">
-
+  <?php
+  $dbhost = "localhost";
+  $dbuser = "root";
+  $dbpass = "";
+  $db = "travelblog";
+  $dbTable = "post_table";
+  $id = 1;
+  $conn = new mysqli($dbhost, $dbuser, $dbpass, $db) or die("Connect failed: %s\n" . $conn->error);
+  $sql = "SELECT * from $dbTable where post_id=$id";
+  $result = $conn->query($sql);
+  ?>
   <!-- Start your project here-->
   <section id="b-head">
     <div class="bhead flex-center mb-3 flex-column">
@@ -72,33 +84,37 @@
         </a>
       </div> -->
       <div class="view overlay zoom col-sm-3">
-        <a href="post.html">
+        <a href="post.php">
           <img src="img/IMG_20180827_164430_371.jpg" class="img-fluid" alt="smaple image">
         </a>
         <div class="mask flex-center">
-          <a href="post.html" class="white-text card-hover">See the post</a>
+          <a href="post.php" class="white-text card-hover">
+            <?php if ($row = $result->fetch_assoc()) {
+              echo $row["post_head"];
+            } ?></a>
         </div>
       </div>
-      <!--Mask with wave--><a href="post.html">
-      <div class="view overlay zoom col-sm-3">
-        <img src="img/IMG_20180827_164430_371.jpg" class="img-fluid" alt="smaple image"></a>
-        <div class="mask flex-center">
-          <a href="post.html" class="white-text card-hover">See the post</a>
-        </div>
+      <!--Mask with wave--><a href="post.php">
+        <div class="view overlay zoom col-sm-3">
+          <img src="img/IMG_20180827_164430_371.jpg" class="img-fluid" alt="smaple image">
+      </a>
+      <div class="mask flex-center">
+        <a href="post.php" class="white-text card-hover">See the post</a>
       </div>
-      <div class="view overlay zoom col-sm-3">
-        <a href="post.html"><img src="img/IMG_20180827_164430_371.jpg" class="img-fluid" alt="smaple image"></a>
-        <div class="mask flex-center">
-          <a href="post.html" class="white-text card-hover">See the post</a>
-        </div>
+    </div>
+    <div class="view overlay zoom col-sm-3">
+      <a href="post.php"><img src="img/IMG_20180827_164430_371.jpg" class="img-fluid" alt="smaple image"></a>
+      <div class="mask flex-center">
+        <a href="post.php" class="white-text card-hover">See the post</a>
       </div>
-      <!--Mask with wave-->
-      <div class="view overlay zoom col-sm-3">
-        <a href="post.html"><img src="img/IMG_20180827_164430_371.jpg" class="img-fluid" alt="smaple image"></a>
-        <div class="mask flex-center">
-          <a href="post.html" class="white-text card-hover">See the post</a>
-        </div>
+    </div>
+    <!--Mask with wave-->
+    <div class="view overlay zoom col-sm-3">
+      <a href="post.php"><img src="img/IMG_20180827_164430_371.jpg" class="img-fluid" alt="smaple image"></a>
+      <div class="mask flex-center">
+        <a href="post.php" class="white-text card-hover">See the post</a>
       </div>
+    </div>
     </div>
   </section>
   <hr class="hr-line">
