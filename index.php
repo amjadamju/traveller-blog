@@ -20,7 +20,10 @@
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
   <?php
-  include_once 'connection.php';
+  function postpage($id)
+  {
+    $_SESSION['postid'] = $id;
+  }
   ?>
 </head>
 
@@ -66,6 +69,7 @@
     <h2 class="m-5 text-center card-head" style="text-align: center;">Recent Visits</h2>
     <div class="row no-gutters mt-5">
       <?php
+      session_start();
       $dbhost = "localhost";
       $dbuser = "root";
       $dbpass = "";
@@ -75,23 +79,24 @@
       $sql = "SELECT * from $dbTable";
       $result = $conn->query($sql);
       ?>
-      <?php while($row = mysqli_fetch_assoc($result)){
-        $total = "SELECT COUNT(*) from $dbTable";
+      <?php while ($row = mysqli_fetch_assoc($result)) {
+        
+        // echo $_SESSION['postid'] ;
         // for ($i = 1; $i <= $total; $i++) {
-           ?>
-          <div class="view overlay zoom col-sm-3">
-            <a href="post.php">
-              <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['head_image']);?>" />
+      ?>
+        <div class="view overlay zoom col-sm-3">
+          <a href="post.php">
+            <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['head_image']); ?>" />
+          </a>
+          <div class="mask flex-center">
+            <a href="post.php" id="abc" class="white-text card-hover" onclick="postpage();">
+              <?php echo $row["post_head"]; ?>
             </a>
-            <div class="mask flex-center">
-              <a href="post.php" class="white-text card-hover">
-                <?php echo $row["post_head"]; ?>
-              </a>
-            </div>
           </div>
+        </div>
       <?php
-        }
-        ?>
+      }
+      ?>
     </div>
   </section>
   <hr class="hr-line">

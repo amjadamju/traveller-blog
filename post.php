@@ -16,10 +16,21 @@
     <link rel="stylesheet" href="css/mdb.min.css">
     <!-- Your custom styles (optional) -->
     <link rel="stylesheet" href="css/style.css">
-    <?php
-    include_once 'connection.php';
-    ?>
+
 </head>
+<?php
+session_start();
+$dbhost = "localhost";
+$dbuser = "root";
+$dbpass = "";
+$db = "travelblog";
+$dbTable = "post_table";
+$conn = new mysqli($dbhost, $dbuser, $dbpass, $db) or die("Connect failed: %s\n" . $conn->error);
+$id = $_SESSION['postid'];
+$sql = "SELECT * from post_table where post_id=$id";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+?>
 
 <body style="overflow-x: hidden;">
 
@@ -27,25 +38,27 @@
     <section class="post-head">
         <div class="post-head-image">
             <div class="navbar">
-                <a href="index.html">
+                <a href="index.php">
                     <h4 class="text-white post-heading p-1">Home</h4>
                 </a>
             </div>
             <div class="flex-center flex-column">
-                <h2 class="post-heading  text-white">Post Heading</h2>
+                <h2 class="post-heading  text-white">
+                    <?php
+                    echo $row['post_head'];
+                    echo $id;
+                    ?> </h2>
             </div>
+
         </div>
     </section>
 
     <section id="post-detail">
         <div class="post-highlight m-5 col-sm-6 mx-auto">
             <blockquote class="blockquote bq-warning">
-                <p class="bq-title">Main highlight</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores quibusdam dignissimos itaque harum
-                    illo!
-                    Quidem, corporis at quae tempore nisi impedit cupiditate perferendis nesciunt, ex dolores
-                    doloremque!
-                    Sit, rem, in?
+                <p class="bq-title"><?php echo $row['highlight_head']?></p>
+                <p>
+                    <?php echo $row['highlight_content']?>
                 </p>
             </blockquote>
         </div>
@@ -53,33 +66,11 @@
             <p>
 
                 <h3 class="py-3">What is Lorem Ipsum?</h3>
-
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-                into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the
-                release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
-                software like Aldus PageMaker including versions of Lorem Ipsum.
-                Why do we use it?
-
-                It is a long established fact that a reader will be distracted by the readable content of a page when
-                looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution
-                of letters, as opposed to using 'Content here, content here', making it look like readable English. Many
-                desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a
-                search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have
-                evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
-
+                <?php echo $row['post_content_1']?>
+                
                 <h3 class="py-3">Where does it come from</h3>
-
-                Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical
-                Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at
-                Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a
-                Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the
-                undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et
-                Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the
-                theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor
-                sit amet..", comes from a line in section 1.10.32.
-            </p>
+                <?php echo $row['post_content_2']?>
+                </p>
         </div>
 
     </section>
@@ -95,21 +86,21 @@
                     <p>our mail will not be published.Required fields are marked:)</p>
                 </div>
                 <?php
-                 $dbhost = "localhost";
-                 $dbuser = "root";
-                 $dbpass = "";
-                 $db = "travelblog";
-                 $dbTable="comment_table";
-                 $id=2;
-                 $conn = new mysqli($dbhost, $dbuser, $dbpass, $db) or die("Connect failed: %s\n" . $conn->error);
+                $dbhost = "localhost";
+                $dbuser = "root";
+                $dbpass = "";
+                $db = "travelblog";
+                $dbTable = "comment_table";
+                $id = 2;
+                $conn = new mysqli($dbhost, $dbuser, $dbpass, $db) or die("Connect failed: %s\n" . $conn->error);
                 //  echo $_POST['name'];
                 if (isset($_POST['send'])) {
-                    $sql = "INSERT INTO comment_table (name, email,comment) VALUES ('".$_POST["name"]."','".$_POST["email"]."','".$_POST["comment"]."')";
-                    $result = mysqli_query($conn,$sql);
+                    $sql = "INSERT INTO comment_table (name, email,comment) VALUES ('" . $_POST["name"] . "','" . $_POST["email"] . "','" . $_POST["comment"] . "')";
+                    $result = mysqli_query($conn, $sql);
                 }
                 $sql = "SELECT comment,name from $dbTable WHERE comment_id = $id";
                 $result = $conn->query($sql);
-                
+
                 ?>
                 <form id="review" action="post.php" method="post">
                     <div class="form-group">
@@ -131,10 +122,12 @@
                         <!-- Grid column -->
                     </div>
 
-                    <button type="submit" name="send"  class="my-3 btn btn-amber">Submit</button>
-                    <h1><?php if($row = $result->fetch_assoc()) {
-                    echo "<h1>".$row["comment"]."<br>".$row["name"]."</h1>";
-                } ?></h1>
+                    <button type="submit" name="send" class="my-3 btn btn-amber">Submit</button>
+                    <h1>
+                        <?php if ($row = $result->fetch_assoc()) {
+                            // echo "<h1>" . $row["comment"] . "<br>" . $row["name"] . "</h1>";
+                        } ?>
+                        </h1>
                 </form>
             </div>
         </div>
