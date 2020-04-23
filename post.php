@@ -18,19 +18,26 @@
     <link rel="stylesheet" href="css/style.css">
 
 </head>
+<style>
+    .post-head-image{
+        background-image: url('<?php echo $row['head_image'];?>');
+    }
+</style>
 <?php
-session_start();
 $dbhost = "localhost";
 $dbuser = "root";
 $dbpass = "";
 $db = "travelblog";
 $dbTable = "post_table";
 $conn = new mysqli($dbhost, $dbuser, $dbpass, $db) or die("Connect failed: %s\n" . $conn->error);
-$id = $_SESSION['postid'];
+if (isset($_POST["postsend"])) {
+    $id= $_POST['postid'];
+}
 $sql = "SELECT * from post_table where post_id=$id";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
-?>
+
+    ?>
 
 <body style="overflow-x: hidden;">
 
@@ -56,7 +63,6 @@ $row = $result->fetch_assoc();
     <section id="post-detail">
         <div class="post-highlight m-5 col-sm-6 mx-auto">
             <blockquote class="blockquote bq-warning">
-                <p class="bq-title"><?php echo $row['highlight_head']?></p>
                 <p>
                     <?php echo $row['highlight_content']?>
                 </p>
@@ -68,8 +74,6 @@ $row = $result->fetch_assoc();
                 <h3 class="py-3">What is Lorem Ipsum?</h3>
                 <?php echo $row['post_content_1']?>
                 
-                <h3 class="py-3">Where does it come from</h3>
-                <?php echo $row['post_content_2']?>
                 </p>
         </div>
 
@@ -91,7 +95,6 @@ $row = $result->fetch_assoc();
                 $dbpass = "";
                 $db = "travelblog";
                 $dbTable = "comment_table";
-                $id = 2;
                 $conn = new mysqli($dbhost, $dbuser, $dbpass, $db) or die("Connect failed: %s\n" . $conn->error);
                 //  echo $_POST['name'];
                 if (isset($_POST['send'])) {
@@ -132,7 +135,7 @@ $row = $result->fetch_assoc();
             </div>
         </div>
     </section>
-    <section id="gallery">
+    <!-- <section id="gallery">
         <div class="container">
             <div class="row">
                 <div class="col-3 gallery-item">
@@ -149,7 +152,7 @@ $row = $result->fetch_assoc();
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <section id="footer">
         <!-- Footer -->
         <footer class="page-footer font-small teal pt-4">

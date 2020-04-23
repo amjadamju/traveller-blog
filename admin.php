@@ -39,7 +39,6 @@ include_once 'connection.php';
                 $dbpass = "";
                 $db = "travelblog";
                 $dbTable = "post_table";
-                $id = 2;
                 $conn = new mysqli($dbhost, $dbuser, $dbpass, $db) or die("Connect failed: %s\n" . $conn->error);
 
                 // If file upload form is submitted 
@@ -58,8 +57,8 @@ include_once 'connection.php';
                             $imgContent = addslashes(file_get_contents($image));
 
                             // Insert image content into database 
-                            $sql = "INSERT INTO post_table (date,highlight_head , highlight_content,post_head,post_content_1,post_content_2,head_image) 
-                            VALUES ('" . $_POST["Date"] . "','" . $_POST["high_head"] . "','" . $_POST["high_cont_1"] . "','" . $_POST["post_head"] . "','" . $_POST["post_para1"] . "','" . $_POST["post_para2"] . "','" . $imgContent . "')";
+                            $sql = "INSERT INTO post_table (date, highlight_content,post_head,post_content_1,head_image) 
+                            VALUES ('" . $_POST["Date"] . "','" . $_POST["high_cont_1"] . "','" . $_POST["post_head"] . "','" . $_POST["post_para1"] . "','" . $imgContent . "')";
                             $result = mysqli_query($conn, $sql);
 
                             if ($sql) {
@@ -86,7 +85,6 @@ include_once 'connection.php';
 
                     <input type="date" name="Date" class="form-control mb-3" placeholder="Date">
                     <!-- Name -->
-                    <input type="text" name="high_head" class="form-control mb-4" placeholder="Highlight heading">
                     <input type="text" name="high_cont_1" class="form-control mb-4" placeholder="Highlight content">
 
                     <!-- Email -->
@@ -96,9 +94,6 @@ include_once 'connection.php';
                     <!-- Message -->
                     <div class="form-group">
                         <textarea class="form-control rounded-0" name="post_para1" rows="3" placeholder="Post content - Para 1"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control rounded-0" name="post_para2" rows="3" placeholder="Post content - Para 2"></textarea>
                     </div>
                     <h4>Upload main image here</h4>
                     <input type="file" name="head_image" class="form-control mb-3">

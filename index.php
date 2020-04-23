@@ -19,12 +19,7 @@
   <!-- Your custom styles (optional) -->
   <link rel="stylesheet" href="css/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
-  <?php
-  function postpage($id)
-  {
-    $_SESSION['postid'] = $id;
-  }
-  ?>
+
 </head>
 
 <body style="overflow-x: hidden;">
@@ -69,7 +64,6 @@
     <h2 class="m-5 text-center card-head" style="text-align: center;">Recent Visits</h2>
     <div class="row no-gutters mt-5">
       <?php
-      session_start();
       $dbhost = "localhost";
       $dbuser = "root";
       $dbpass = "";
@@ -80,7 +74,7 @@
       $result = $conn->query($sql);
       ?>
       <?php while ($row = mysqli_fetch_assoc($result)) {
-        
+
         // echo $_SESSION['postid'] ;
         // for ($i = 1; $i <= $total; $i++) {
       ?>
@@ -89,8 +83,11 @@
             <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['head_image']); ?>" />
           </a>
           <div class="mask flex-center">
-            <a href="post.php" id="abc" class="white-text card-hover" onclick="postpage();">
-              <?php echo $row["post_head"]; ?>
+            <a id="abc" class="white-text card-hover" onclick="postpage();">
+            <form class="idpass" method="post" action="post.php">
+              <input style="display:none" name="postid" type="text" value="<?php echo $row['post_id']; ?>">
+              <input style="color:black;" type="submit" value="<?php echo $row["post_head"];?>" name="postsend">
+            </form>
             </a>
           </div>
         </div>
@@ -153,7 +150,6 @@
     <!-- Footer -->
   </section>
   <!-- End your project here-->
-
   <!-- jQuery -->
   <script type="text/javascript" src="js/jquery.min.js"></script>
   <!-- Bootstrap tooltips -->
