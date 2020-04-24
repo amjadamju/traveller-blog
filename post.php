@@ -53,7 +53,6 @@ $row = $result->fetch_assoc();
                 <h2 class="post-heading  text-white">
                     <?php
                     echo $row['post_head'];
-                    echo $id;
                     ?> </h2>
             </div>
 
@@ -62,13 +61,13 @@ $row = $result->fetch_assoc();
 
     <section id="post-detail">
         <div class="post-highlight m-5 col-sm-6 mx-auto">
-            <blockquote class="blockquote bq-warning">
+            <blockquote class="blockquote bq-warning ">
                 <p>
                     <?php echo $row['highlight_content']?>
                 </p>
             </blockquote>
         </div>
-        <div class="container col-sm-8 py-5 mx-auto">
+        <div class="container col-sm-6 py-5 mx-auto">
             <p>
 
                 <h3 class="py-3">What is Lorem Ipsum?</h3>
@@ -81,7 +80,7 @@ $row = $result->fetch_assoc();
     <section id="post-gallery">
     </section>
     <section id="feedback">
-        <div class="row mt-5 mb-5">
+        <div class="row mt-5 mb-5 m-1">
             <div class="col-sm-6 border py-3 px-5 rounded-sm mx-auto">
                 <div class="row text-md-left mb-3">
                     <h3>Leave a Comment</h3>

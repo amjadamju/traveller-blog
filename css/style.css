@@ -62,7 +62,7 @@ body{
         size: 30px;
     }
     .about-image{
-        display: none;
+        /* display: none; */
     }
     .hr-line{
         margin-top: 40px;
