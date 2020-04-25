@@ -19,8 +19,8 @@
 
 </head>
 <style>
-    .post-head-image{
-        background-image: url('<?php echo $row['head_image'];?>');
+    .post-head-image {
+        background-image: url('<?php echo $row['head_image']; ?>');
     }
 </style>
 <?php
@@ -31,13 +31,13 @@ $db = "travelblog";
 $dbTable = "post_table";
 $conn = new mysqli($dbhost, $dbuser, $dbpass, $db) or die("Connect failed: %s\n" . $conn->error);
 if (isset($_POST["postsend"])) {
-    $id= $_POST['postid'];
+    $id = $_POST['postid'];
 }
 $sql = "SELECT * from post_table where post_id=$id";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 
-    ?>
+?>
 
 <body style="overflow-x: hidden;">
 
@@ -63,17 +63,137 @@ $row = $result->fetch_assoc();
         <div class="post-highlight m-5 col-sm-6 mx-auto">
             <blockquote class="blockquote bq-warning ">
                 <p>
-                    <?php echo $row['highlight_content']?>
+                    <?php echo $row['highlight_content'] ?>
                 </p>
             </blockquote>
         </div>
         <div class="container col-sm-6 py-5 mx-auto">
-            <p>
+            <p class="mt-3 mb-3">
 
-                <h3 class="py-3">What is Lorem Ipsum?</h3>
-                <?php echo $row['post_content_1']?>
-                
-                </p>
+                <?php echo $row['post_content_1'] ?>
+
+            </p>
+
+            <p class="mt-3 mb-3">
+                <span class="h3 m-3">
+                    <?php echo $row['subh1'] ?>
+                </span>
+                <?php echo $row['subc1'] ?>
+            </p>
+            <p class="mt-3 mb-3">
+                <span class="h3 m-3">
+                    <?php echo $row['subh2'] ?>
+                </span>
+                <?php echo $row['subc2'] ?>
+            </p>
+            <p class="mt-3 mb-3">
+                <span class="h3 m-3">
+                    <?php echo $row['subh3'] ?>
+                </span>
+                <?php echo $row['subc3'] ?>
+            </p>
+            <p class="mt-3 mb-3">
+                <span class="h3 m-3">
+                    <?php echo $row['subh4'] ?>
+                </span>
+                <?php echo $row['subc4'] ?>
+            </p>
+            <p class="mt-3 mb-3">
+                <span class="h3 m-3">
+                    <?php echo $row['subh5'] ?>
+                </span>
+                <?php echo $row['subc5'] ?>
+            </p>
+            <p class="mt-3 mb-3">
+                <span class="h3 m-3">
+                    <?php echo $row['subh6'] ?>
+                </span>
+                <?php echo $row['subc6'] ?>
+            </p>
+            <p class="mt-3 mb-3">
+                <span class="h3 m-3">
+                    <?php echo $row['subh7'] ?>
+                </span>
+                <?php echo $row['subc7'] ?>
+            </p>
+            <p class="mt-3 mb-3">
+                <span class="h3 m-3">
+                    <?php echo $row['subh8'] ?>
+                </span>
+                <?php echo $row['subc8'] ?>
+            </p>
+            <p class="mt-3 mb-3">
+                <span class="h3 m-3">
+                    <?php echo $row['subh9'] ?>
+                </span>
+                <?php echo $row['subc9'] ?>
+            </p>
+            <p class="mt-3 mb-3">
+                <span class="h3 m-3">
+                    <?php echo $row['subh10'] ?>
+                </span>
+                <?php echo $row['subc10'] ?>
+            </p>
+            <p class="mt-3 mb-3">
+                <span class="h3 m-3">
+                    <?php echo $row['subh11'] ?>
+                </span>
+                <?php echo $row['subc11'] ?>
+            </p>
+            <p class="mt-3 mb-3">
+                <span class="h3 m-3">
+                    <?php echo $row['subh12'] ?>
+                </span>
+                <?php echo $row['subc12'] ?>
+            </p>
+            <p class="mt-3 mb-3">
+                <span class="h3 m-3">
+                    <?php echo $row['subh13'] ?>
+                </span>
+                <?php echo $row['subc13'] ?>
+            </p>
+            <p class="mt-3 mb-3">
+                <span class="h3 m-3">
+                    <?php echo $row['subh14'] ?>
+                </span>
+                <?php echo $row['subc14'] ?>
+            </p>
+            <p class="mt-3 mb-3">
+                <span class="h3 m-3">
+                    <?php echo $row['subh15'] ?>
+                </span>
+                <?php echo $row['subc15'] ?>
+            </p>
+            <p class="mt-3 mb-3">
+                <span class="h3 m-3">
+                    <?php echo $row['subh16'] ?>
+                </span>
+                <?php echo $row['subc16'] ?>
+            </p>
+            <p class="mt-3 mb-3">
+                <span class="h3 m-3">
+                    <?php echo $row['subh17'] ?>
+                </span>
+                <?php echo $row['subc17'] ?>
+            </p>
+            <p class="mt-3 mb-3">
+                <span class="h3 m-3">
+                    <?php echo $row['subh18'] ?>
+                </span>
+                <?php echo $row['subc18'] ?>
+            </p>
+            <p class="mt-3 mb-3">
+                <span class="h3 m-3">
+                    <?php echo $row['subh19'] ?>
+                </span>
+                <?php echo $row['subc19'] ?>
+            </p>
+            <p class="mt-3 mb-3">
+                <span class="h3 m-3">
+                    <?php echo $row['subh20'] ?>
+                </span>
+                <?php echo $row['subc20'] ?>
+            </p>
         </div>
 
     </section>
@@ -129,7 +249,7 @@ $row = $result->fetch_assoc();
                         <?php if ($row = $result->fetch_assoc()) {
                             // echo "<h1>" . $row["comment"] . "<br>" . $row["name"] . "</h1>";
                         } ?>
-                        </h1>
+                    </h1>
                 </form>
             </div>
         </div>
