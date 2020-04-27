@@ -56,7 +56,7 @@
     <div class="row mt-3">
       <div class="col-sm-6 py-3">
         <h2 class="m-5 about-head text-center">About Me</h2>
-        <p class=" col-md-8 mt-5 about text-center" style="text-align: justify">
+        <p class=" col-md-8 about text-center mx-auto">
           Hey I’m Fahim. Just a curious fellow, who wants to hit the road and explore every corner of the world. I have just started this journey of self-enlightenment and I wish to share every story of every person and every destination that I may come across, with as many people as possible.
         </p>
       </div>
@@ -93,15 +93,16 @@
         // echo $_SESSION['postid'] ;
         // for ($i = 1; $i <= $total; $i++) {
       ?>
-        <div class="view overlay zoom col-sm-3">
+        <div class="view overlay zoom col-sm-3 mx-auto">
           <a href="post.php">
-            <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['head_image']); ?>" />
+            <!-- <img src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($row['head_image']); ?>" /> -->
+            <img src="img/IMG_7435.JPG" style="max-width: 100%;max-height:100%" />
           </a>
           <div class="mask flex-center">
             <a id="abc" class="white-text card-hover" onclick="postpage();">
               <form class="idpass" method="post" action="post.php">
                 <input style="display:none" name="postid" type="text" value="<?php echo $row['post_id']; ?>">
-                <input style="color:black;" type="submit" value="<?php echo $row["post_head"]; ?>" name="postsend">
+                <input style="color:black;border:none;background:none;color:white;font-size:25px;" type="submit" value="<?php echo $row["post_head"]; ?>" name="postsend">
               </form>
             </a>
           </div>
@@ -129,9 +130,9 @@
               <!-- Facebook -->
               <a class="fb-ic" href="https://www.facebook.com/mfahim1997">
                 <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-    </a>
+              </a>
               <a class="wa-ic" href="https://wa.me/8714458402">
-              <i class="fab fa-whatsapp fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
+                <i class="fab fa-whatsapp fa-lg white-text mr-md-5 mr-3 fa-2x"></i>
               </a>
               <!--Linkedin -->
               <a class="li-ic" href="https://www.linkedin.com/in/mohamed-fahim-586b8a18a/">
