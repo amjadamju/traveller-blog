@@ -61,7 +61,7 @@
         </p>
       </div>
       <div class="col-sm-6">
-        <img class="about-image  hover hoverable" src="img/about.jpg">
+        <img class="about-image  hover hoverable" src="img/about.jpg" style="max-height: 100%;max-width:100%;">
       </div>
     </div>
   </section>
@@ -96,16 +96,16 @@
         <div class="view overlay zoom col-sm-3 mx-auto">
           <a href="post.php">
             <!-- <img src="data:image/jpg;charset=utf8;base64,<?php
-            //  echo base64_encode($row['head_image']); 
-             ?>" /> -->
+                                                              //  echo base64_encode($row['head_image']); 
+                                                              ?>" /> -->
             <img src="img/IMG_7435.JPG" style="max-width: 100%;max-height:100%" />
           </a>
           <div class="mask flex-center">
             <a id="abc" class="white-text card-hover" onclick="postpage();">
               <form class="idpass" method="post" action="post.php">
-                <!-- <input style="display:none" name="postid" type="text" value="<?php 
-                // echo $row['post_id']; 
-                ?>"> -->
+                <!-- <input style="display:none" name="postid" type="text" value="<?php
+                                                                                  // echo $row['post_id']; 
+                                                                                  ?>"> -->
                 <input style="color:black;border:none;background:none;color:white;font-size:25px;" type="submit" value="<?php echo $row["post_head"]; ?>" name="postsend">
               </form>
             </a>
@@ -117,6 +117,46 @@
     </div>
   </section>
   <hr class="hr-line">
+  <section class="subscription">
+    <?php
+    $dbhost = "localhost";
+    $dbuser = "root";
+    $dbpass = "";
+    $db = "travelblog";
+    $dbTable = "SubscriberTable";
+    $conn = new mysqli($dbhost, $dbuser, $dbpass, $db) or die("Connect failed: %s\n" . $conn->error);
+    if (isset($_POST['send'])) {
+      $sql = "INSERT INTO SubscriberTable (name, email) VALUES ('" . $_POST["name"] . "','" . $_POST["email"] . "')";
+      $result = mysqli_query($conn, $sql);
+    }
+    $sql = "SELECT email,name from $dbTable";
+    $result = $conn->query($sql);
+    ?>
+    ?>
+    <div class="row">
+      <div class="col-sm-4 flex-center flex-column mx-auto">
+        <img src="img/undraw_subscriber_vabu.png" style="max-width: 100%;max-height:100%;">
+      </div>
+      <div class="col-sm-4 mx-auto">
+        <p class="h2 text-center mb-4">Subscribe</p>
+        <!-- Default form subscription -->
+        <form class="text-center border border-light p-5 mb-5 my-auto" action="index.php" method="post">
+
+          <!-- Name -->
+          <input type="text" name="name" id="defaultSubscriptionFormPassword" class="form-control mb-4" placeholder="Name">
+
+          <!-- Email -->
+          <input type="email" name="email" id="defaultSubscriptionFormEmail" class="form-control mb-4" placeholder="E-mail">
+
+          <!-- Sign in button -->
+          <button class="btn btn-block" name="send" type="submit" style="background-color: #f7a825;">Subscribe</button>
+
+
+        </form>
+        <!-- Default form subscription -->
+      </div>
+    </div>
+  </section>
   <section id="footer">
     <!-- Footer -->
     <footer class="page-footer font-small yellow darken-3">
