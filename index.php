@@ -70,50 +70,33 @@
   <section id="quote">
     <div class="jumbotron jumbotron-fluid col-sm-8 mx-auto m-3">
       <blockquote class="blockquote text-center">
-        <p class="mb-0">“Let the world change you, and you change the world”</p>
+        <p class="h3-responsive mb-0">“Let the world change you, and you change the world”</p>
         <footer class="blockquote-footer mb-3"><cite title="Source Title">Che Guevara</cite></footer>
       </blockquote>
     </div>
   </section>
   <section id="travel-cards" class="mb-5">
     <h2 class="m-5 text-center card-head" style="text-align: center;">Recent Visits</h2>
-    <div class="row no-gutters mt-5" style="margin-left: auto;margin-right:auto;">
-      <?php
-      $dbhost = "localhost";
-      $dbuser = "root";
-      $dbpass = "";
-      $db = "travelblog";
-      $dbTable = "post_table";
-      $conn = new mysqli($dbhost, $dbuser, $dbpass, $db) or die("Connect failed: %s\n" . $conn->error);
-      $sql = "SELECT * from $dbTable";
-      $result = $conn->query($sql);
-      ?>
-      <?php while ($row = mysqli_fetch_assoc($result)) {
-
-        // echo $_SESSION['postid'] ;
-        // for ($i = 1; $i <= $total; $i++) {
-      ?>
+    <div class="row no-gutters mt-5 flex-center" style="margin-left: auto;margin-right:auto;">
+      
         <div class="view overlay zoom col-sm-3 mx-auto">
           <a href="post.php">
-            <!-- <img src="data:image/jpg;charset=utf8;base64,<?php
-                                                              //  echo base64_encode($row['head_image']); 
-                                                              ?>" /> -->
-            <img src="img/IMG_7435.JPG" style="max-width: 100%;max-height:100%" />
+            <img src="img/IMG_7435.JPG" class="mx-auto" style="max-width: 100%;max-height:100%" />
           </a>
           <div class="mask flex-center">
-            <a id="abc" class="white-text card-hover" onclick="postpage();">
-              <form class="idpass" method="post" action="post.php">
-                <!-- <input style="display:none" name="postid" type="text" value="<?php
-                                                                                  // echo $row['post_id']; 
-                                                                                  ?>"> -->
-                <input style="color:black;border:none;background:none;color:white;font-size:25px;" type="submit" value="<?php echo $row["post_head"]; ?>" name="postsend">
-              </form>
+            <a id="abc" class="white-text card-hover" href="post.php">Chasing the Kumari
             </a>
           </div>
         </div>
-      <?php
-      }
-      ?>
+        <div class="view overlay zoom col-sm-3 mx-3">
+          <a href="post.php">
+            <img src="img/head2.jpg" class="mx-auto" style="max-width: 100%;max-height:100%" />
+          </a>
+          <div class="mask flex-center">
+            <a id="abc" class="black-text card-hover" href="post2.php">Journey across Chennai
+            </a>
+          </div>
+        </div>
     </div>
   </section>
   <hr class="hr-line">
@@ -132,7 +115,7 @@
     $sql = "SELECT email,name from $dbTable";
     $result = $conn->query($sql);
     ?>
-    ?>
+    
     <div class="row">
       <div class="col-sm-4 flex-center flex-column mx-auto">
         <img src="img/undraw_subscriber_vabu.png" style="max-width: 100%;max-height:100%;">
